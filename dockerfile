@@ -1,24 +1,29 @@
-# Use an official Python base image
-FROM python:3.11
+FROM python:3.11-slim
 
-# Install system dependencies
+# Install build tools and dependencies
 RUN apt-get update && apt-get install -y \
-    cmake \
-    g++ \
     build-essential \
+    cmake \
+    libopenblas-dev \
+    liblapack-dev \
+    libx11-dev \
     libgtk-3-dev \
     libboost-all-dev \
-    && rm -rf /var/lib/apt/lists/*
+    git \
+    wget \
+    curl \
+    && apt-get clean
 
-# Set the working directory
-WORKDIR /app
+# Optional: use precompiled dlib (faster)
+RUN pip install dlib==19.24.2
 
-# Copy the project files
-COPY . .
-
-# Install Python dependencies
-RUN pip install --upgrade pip
+# Install remaining Python dependencies
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# Run your app (change this to the actual entry point)
+# Copy your app code
+COPY . /app
+WORKDIR /app
+
+# Command to run your app
 CMD ["python", "main.py"]
