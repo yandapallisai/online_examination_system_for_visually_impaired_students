@@ -1,20 +1,24 @@
+# Use an official Python base image
 FROM python:3.11
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
     cmake \
+    g++ \
+    build-essential \
     libgtk-3-dev \
-    libboost-all-dev
+    libboost-all-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy your app
-COPY . /app
+# Copy the project files
+COPY . .
 
-# Install Python packages
+# Install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-CMD ["python", "your_script.py"]
+# Run your app (change this to the actual entry point)
+CMD ["python", "main.py"]
