@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam Portal</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='exam.css') }}">
+</head>
+<body>
+    <div id="header" class="header">
+        <div class="header-left">
+            <h1 id="exam-name"></h1>
+            <p id="exam-id"></p>
+            <p id="attendee-id"></p>
+        </div>
+        <div class="header-right">
+            <div id="timer" class="timer-box">
+                <span class="timer-label">Time Left:&nbsp; </span>
+                <span id="time" class="timer-value"> 00:00</span>
+            </div>
+            <button id="submit-btn">Submit</button>
+        </div>
+    </div>
+    <div id="exam-container" class="exam-container">
+        <div id="question-box" class="question-box">
+
+        </div>
+        <div id="options-box" class="options-box">
+
+        </div>
+        <div id="answer-box" class="answer-box"></div>
+    </div>
+
+    <div id="status-panel" class="status-panel">
+        <h3>Status</h3>
+        <div class="status-grid" id="status-grid"></div>
+    </div>
+    
+    <div class="nav-buttons">
+        <button id="prev-btn">Previous</button>
+        <button id="next-btn">Next</button>
+        <button id="repeat-btn">Repeat</button>
+    </div>
+    <script src="{{ url_for('static', filename='exam.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+/* Reset & Base */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #4a00e0, #8e2de2);
+    color: #fff;
+    padding: 20px 30px;
+    border-bottom: 4px solid #3b00b1;
+    flex-wrap: wrap;
+}
+
+.header-left {
+    flex: 1;
+    min-width: 240px;
+}
+
+.header-left h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.header-left p {
+    font-size: 1rem;
+    margin: 5px 0 0;
+    color: #dcdcff;
+}
+
+.header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 160px;
+    gap: 10px;
+}
+
+.timer-box {
+    display: flex;
+    align-items: center;
+    padding: 8px 14px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+#submit-btn {
+    background-color: #ff4d4f;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#submit-btn:hover {
+    background-color: #d9363e;
+}
+
+/* Responsive header */
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* Exam container */
+.exam-container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Question */
+.question-box p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* MCQ Option Styles */
+#options-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+#options-box label {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: #f8f8fc;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#options-box label:hover {
+    background-color: #f0ebff;
+    border-color: #c0aaff;
+}
+
+#options-box input[type="radio"] {
+    margin-right: 12px;
+    accent-color: #8e2de2;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+#options-box input[type="radio"]:checked + strong {
+    color: #8e2de2;
+}
+
+
+/* Inputs for text / fill in the blank */
+#answer-box input[type="text"],
+#answer-box textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+#answer-box input[type="text"]:focus,
+#answer-box textarea:focus {
+    border-color: #8e2de2;
+    box-shadow: 0 0 6px rgba(142, 45, 226, 0.3);
+    background-color: #fff;
+    outline: none;
+}
+
+#answer-box textarea {
+    resize: vertical;
+    min-height: 120px;
+    max-height: 300px;
+}
+
+/* Navigation */
+.nav-buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    padding: 14px 0;
+    text-align: center;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.nav-buttons button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #4a90e2;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.nav-buttons button:hover {
+    background-color: #357abd;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+    .exam-container {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+
+    .nav-buttons button {
+        margin: 5px;
+        padding: 8px 14px;
+        font-size: 0.9rem;
+    }
+
+    .header h1 {
+        font-size: 1.4rem;
+    }
+}
+
+/* Style for the entire status panel */
+.status-panel {
+    position: absolute; 
+    top: 136px; 
+    right: 0; 
+    padding: 10px;
+    width: 250px;
+    height: auto;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow-y: auto;
+    z-index: 9999; /* Ensure it stays on top of other content */
+}
+
+.status-panel h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+}
+
+/* Grid layout for the buttons */
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 8px;
+}
+
+/* General button style */
+.status-button {
+    padding: 8px;
+    font-size: 14px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.status-button:hover {
+    background-color: #aaa;
+}
+
+/* Style for current question button */
+.current-question {
+    background-color: #2196f3; /* Green for current question */
+    color: white;
+}
+
+.current-question:hover {
+    background-color: #1976d2;
+}
+
+/* Style for answered question button */
+.answered-question {
+    background-color: #4caf50; /* Blue for answered question */
+    color: white;
+}
+
+.answered-question:hover {
+    background-color: #45a049;
+}
+
+/* Style for unanswered question button */
+.unanswered-question {
+    background-color: #f44336; /* Red for unanswered question */
+    color: white;
+}
+
+.unanswered-question:hover {
+    background-color: #d32f2f;
+}

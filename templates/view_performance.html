@@ -1,0 +1,33 @@
+<div class="container4" id="container4">
+    <h2>Performance</h2>
+        <form id="get-performance-form" enctype="multipart/form-data">
+            <div class="performance-box">
+                <label for="assessment-id">Assessment ID:</label>
+                <input type="text" id="assessment-id" required>
+                <button type="button" id="fetch-btn">View Performance</button>
+            </div>
+        </form>
+</div>
+
+<div id="assessment-info" class="assessment-info-box" style=" display: none;">
+    <p><strong>Assessment Title:</strong> <span id="assessment-title"></span></p>
+    <p><strong>Assessment ID:</strong> <span id="show-assessment-id"></span></p>
+    <p><strong>Date & Time:</strong> <span id="exam-datetime"></span></p>
+</div>
+
+<div id="performance-table-container" style="display:none;">
+    <h3>Performance Report</h3>
+    <table id="table-design" border="1">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Correct</th>
+                <th>Incorrect</th>
+                <th>Unanswered</th>
+                <th>Total Score</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+

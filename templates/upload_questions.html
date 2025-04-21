@@ -1,0 +1,24 @@
+<div class="container3">
+    <h2>Upload Questions</h2>
+        <form id="upload-question-form" enctype="multipart/form-data">
+            <div class="box">
+                <label for="assessment-id">Assessment ID:</label>
+                <input type="text" id="assessment-id" required>
+        
+                <label for="exam-file">Upload Exam Paper (PDF):</label>
+                <input type="file" accept=".pdf" id="exam-file">
+        
+                <button type="button" id="extract-btn">Extract Questions From PDF</button>
+            </div>
+            <div id="question-review-container" style="display: none;">
+                <h3>Review Extracted Questions</h3>
+                <ul id="questions-list"></ul>
+            </div>
+            <div class="btn-3">
+                <button id="confirmSaveBtn">Confirm & Save</button>
+                <button type="button" onclick="toDashboard()">Cancel</button>
+            </div>
+        </form>
+    
+    
+</div>

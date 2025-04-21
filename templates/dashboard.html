@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</head>
+<body>
+    <div class="header">
+        <button  id="menu-btn">☰</button>  
+        <h1>Online Assistive Examination</h1>
+        <div class="profile">
+            <button id="profile-btn">&#128123{{ user.name }}</button>
+            <div class="dropdown" id="profile-dropdown">
+                <a id="loadProfile" href="#">Profile</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="#" onclick="loadPage('create_assessment')">📋 Create Assessment</a></li>
+            <li><a href="#" onclick="loadPage('upload_questions')">&#128195 Upload Question Paper</a></li>
+            <li><a href="#" onclick="loadPage('upload_attendees')">📷 Upload Attendee Images</a></li>
+            <li><a href="#" onclick="loadPage('your_assessments')">📜 Your Assessments</a></li>
+            <li><a href="#" onclick="loadPage('view_performance')">📊 View Performance</a></li>
+
+        </ul>
+    </div>
+    
+    <div class="dashboard-content" id="dashboard-content">
+        <h2>Welcome, {{ user.name }}!</h2>
+        <p>Select an option from the menu to proceed.</p>
+    </br>
+    <div class="instructions" id="instructions">
+        <h3>Some general instructions to create an assessment:</h3>
+        <ol>
+            <li>Go to "Create Assessment" page in dashboard and create an assessment id.</li>
+            <li>After creating assessment id, go to "Upload Question Paper" page for extracting questions and saving.</li>
+            <li>After saving questions. Add the photos of attendees who will be taking the examination.</li>
+            <li>Finally your exam will be created successfully and you can verify your assessment details by opening "Your Assessments" page.</li>
+        </ol>
+        <h3>Questions structure to be followed in PDF:(⚠️If not in the below format the questions cannot be extracted properly.)</h3>
+        <ul>
+            <li>The questions should start with either of the following and ends with . or ?:
+                <ul>
+                    <li>Q.</li>
+                    <li>Question.</li>
+                    <li>1.</li>
+                    <li>1)</li>
+                </ul>
+            </li>
+            <li>For MCQ Questions ensure the question is followed by either of the options form:
+                <ul>
+                    <li>A.</li>
+                    <li>(A)</li>
+                    <li>A)</li>
+                    <li>Option A</li>
+                </ul>
+            </li>
+            <li>For fill in the blank question, the question should end with either . or ? and should contain atleast 3 underscores "___" anywhere in the question. </li>
+            <li>For Textual question the question should end with either . or ?</li>
+            <li>For MCQ and Fill in the Blank the correct answer should be mentioned in next line after questions in the following format:
+                <ul>
+                    <li>Answer: your_answer</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+        
+    </div>
+
+    <div id="profile-section" class="profile-container" style="display: none;">
+        <h2>User Profile</h2>
+        <p><strong>Name:</strong> <span id="user-name"></span></p>
+        <p><strong>Email:</strong> <span id="user-email"></span></p>
+        <p><strong>Password:</strong> <span id="password">••••••••</span> 
+            <button id="toggle-password-btn">Show</button>
+        </p>
+        <button id="close-profile-btn" class="close-btn">Close</button>
+    </div>
+
+</body>
+</html>
