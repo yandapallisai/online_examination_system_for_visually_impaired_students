@@ -17,7 +17,7 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key' #needed for session
 
 # Initialize InsightFace model
-face_app = FaceAnalysis(name='buffalo_l')  # 'buffalo_l' is a high-accuracy model
+face_app = FaceAnalysis(name="buffalo_s", providers=["CPUExecutionProvider"])  # 'buffalo_l' is a high-accuracy model
 face_app.prepare(ctx_id=0)  # Use GPU if available
 
 ALLOWED_EXTENSIONS = {"pdf"}
