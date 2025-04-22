@@ -102,3 +102,7 @@ typing_extensions==4.12.2
 urllib3==2.4.0
 wcwidth==0.2.13
 Werkzeug==3.0.1
+insightface
+opencv-python
+numpy
+
