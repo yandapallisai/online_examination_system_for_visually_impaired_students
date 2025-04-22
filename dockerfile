@@ -1,39 +1,25 @@
+# Python with build tools
 FROM python:3.11-slim
 
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    cmake \
-    libgtk-3-dev \
-    libboost-all-dev \
-    libopenblas-dev \
-    liblapack-dev \
-    libx11-dev \
-    ffmpeg \
-    curl \
-    git \
-    libsm6 \
-    libxext6 \
+    cmake build-essential \
+    libgtk-3-dev libboost-all-dev \
+    libopenblas-dev liblapack-dev \
+    ffmpeg libsm6 libxext6 curl git \
     && rm -rf /var/lib/apt/lists/*
 
-# Set workdir
 WORKDIR /app
 
-# Copy wheel file directly into container (adjust the filename as needed)
-COPY dlib-19.24.1-cp311-cp311-win_amd64.whl ./dlib.whl
+# Copy dlib .whl FIRST so Docker can cache it
+COPY dlib-19.24.1-cp311-cp311-manylinux_2_28_x86_64.whl .
 
-# Install prebuilt dlib first to avoid building it
 RUN pip install --upgrade pip
-RUN pip install ./dlib.whl
+RUN pip install ./dlib-19.24.1-cp311-cp311-manylinux_2_28_x86_64.whl
 
-# Then install the rest of your requirements
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app code
 COPY . .
 
-# Expose Flask port
 EXPOSE 5000
-
-# Start the app
 CMD ["python", "app.py"]
