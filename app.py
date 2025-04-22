@@ -846,6 +846,6 @@ def get_students_performance():
     })
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=False)
+    port = int(os.environ.get("PORT", 5000))  # Render provides a dynamic port
+    print(f"🚀 Starting Flask app on port {port}...")
+    app.run(host="0.0.0.0", port=port)
