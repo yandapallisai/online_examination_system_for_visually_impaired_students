@@ -105,4 +105,6 @@ Werkzeug==3.0.1
 insightface
 opencv-python
 numpy
+gradio
+
 
