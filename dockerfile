@@ -1,25 +1,22 @@
-# Python with build tools
-FROM python:3.11-slim
+FROM python:3.12-slim
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    cmake build-essential \
-    libgtk-3-dev libboost-all-dev \
-    libopenblas-dev liblapack-dev \
-    ffmpeg libsm6 libxext6 curl git \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
+# Set workdir
 WORKDIR /app
 
-# Copy dlib .whl FIRST so Docker can cache it
-COPY dlib-19.24.1-cp311-cp311-manylinux_2_28_x86_64.whl .
-
-RUN pip install --upgrade pip
-RUN pip install ./dlib-19.24.1-cp311-cp311-manylinux_2_28_x86_64.whl
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
+# Copy project files
 COPY . .
 
-EXPOSE 5000
-CMD ["python", "app.py"]
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose Railway default port
+ENV PORT=5000
+
+# Run app with gunicorn or python
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
